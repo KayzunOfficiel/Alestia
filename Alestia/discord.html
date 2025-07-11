@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alestia - Discord</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+  <style>
+    /* Override body background for this page */
+    body {
+      background-color: #121212;
+      color: #eee;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      padding: 140px 20px 60px; /* pour éviter le header */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .discord-section {
+      background: #2c2f33;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow:
+        0 0 25px rgba(114, 137, 218, 0.8),
+        inset 0 0 35px rgba(114, 137, 218, 0.4);
+      max-width: 420px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .discord-section h1 {
+      color: #7289da;
+      margin-bottom: 20px;
+      font-weight: 700;
+      text-align: center;
+      text-shadow: 0 0 10px #7289da;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    iframe {
+      width: 100%;
+      height: 520px;
+      border-radius: 15px;
+      border: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      font-size: 0.9rem;
+      color: #666;
+      user-select: none;
+      background-color: #111;
+    }
+
+    /* Responsive */
+    @media (max-width: 450px) {
+      .discord-section {
+        padding: 20px;
+      }
+
+      iframe {
+        height: 450px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-placeholder">
+    <img src="/logo.png" alt="Logo Alestia" class="logo">
+  </div>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="#">Vote</a>
+    <a href="#">Boutique</a>
+    <a href="/discord.html" style="color:#00e0ff;">Discord</a>
+  </nav>
+</header>
+
+<main>
+  <section class="discord-section" aria-label="Widget Discord">
+    <h1>Rejoins notre Discord</h1>
+    <iframe
+      src="https://discord.com/widget?id=1306292735371771954&theme=dark"
+      allowtransparency="true"
+      sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+      title="Widget Discord"
+    ></iframe>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2025 Alestia - Tous droits réservés</p>
+</footer>
+
+</body>
+</html>

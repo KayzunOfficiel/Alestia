@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alestia - Serveur Skyblock Tropical</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <header>
+    <div class="logo-placeholder">
+      <img src="/logo.png" alt="Logo Alestia" class="logo">
+    </div>
+    <nav>
+      <a href="#">Accueil</a>
+      <a href="#">Vote</a>
+      <a href="#">Boutique</a>
+      <a href="/discord.html" style="color:#00e0ff;">Discord</a>
+
+    </nav>
+  </header>
+
+ <section class="hero">
+  <div class="hero-content">
+    <svg width="300" height="100" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Alestia" style="background: transparent;">
+  <defs>
+    <linearGradient id="diamondGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00cfff" />
+      <stop offset="50%" stop-color="#0088cc" />
+      <stop offset="100%" stop-color="#00cfff" />
+    </linearGradient>
+
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#00bfff" flood-opacity="1" />
+    </filter>
+
+    <linearGradient id="shineGradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="rgba(255,255,255,0)" />
+      <stop offset="50%" stop-color="rgba(255,255,255,0.6)" />
+      <stop offset="100%" stop-color="rgba(255,255,255,0)" />
+    </linearGradient>
+
+    <mask id="shineMask">
+      <rect x="0" y="0" width="300" height="100" fill="url(#shineGradient)">
+        <animate attributeName="x" from="-300" to="300" dur="3s" repeatCount="indefinite" />
+      </rect>
+    </mask>
+  </defs>
+
+  <text x="50%" y="70%" text-anchor="middle" font-family="Quicksand, Arial, sans-serif" font-weight="700" font-size="64" fill="url(#diamondGradient)" filter="url(#glow)">
+    Alestia
+  </text>
+
+  <text x="50%" y="70%" text-anchor="middle" font-family="Quicksand, Arial, sans-serif" font-weight="700" font-size="64" fill="white" mask="url(#shineMask)" pointer-events="none" style="mix-blend-mode: screen;">
+    Alestia
+  </text>
+</svg>
+
+    <p>Une aventure Skyblock tropicale vous attend !</p>
+    <button class="btn-play">Jouer</button>
+  </div>
+</section>
+
+
+
+
+<section class="slider">
+  <div class="slider-wrapper" id="sliderWrapper">
+    <div class="slide-track">
+    <img src="/image.png" class="slide active" alt="Slide 1">
+    <img src="/image1.png" class="slide" alt="Slide 2">
+    <img src="/image2.png" class="slide" alt="Slide 3">
+    <img src="/image3.png" class="slide" alt="Slide 4">
+    </div>
+  </div>
+  <div class="slider-dots" id="sliderDots">
+    <span class="dot active" onclick="goToSlide(0)"></span>
+    <span class="dot" onclick="goToSlide(1)"></span>
+    <span class="dot" onclick="goToSlide(2)"></span>
+    <span class="dot" onclick="goToSlide(3)"></span>
+  </div>
+</section>
+
+  <section class="actions">
+    <a href="#" class="btn vote">Vote</a>
+    <a href="#" class="btn shop">Boutique</a>
+    <a href="#" class="btn discord">Discord</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Alestia - Tous droits réservés</p>
+  </footer>
+
+ <script>
+  // Slider
+  let slideIndex = 0;
+  const slideTrack = document.querySelector('.slide-track');
+  const dots = document.querySelectorAll('.dot');
+
+  function updateSlider(index) {
+    slideTrack.style.transform = `translateX(-${index * 25}%)`;
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[index].classList.add('active');
+  }
+
+  function goToSlide(index) {
+    slideIndex = index;
+    updateSlider(slideIndex);
+  }
+
+  setInterval(() => {
+    slideIndex = (slideIndex + 1) % 4;
+    updateSlider(slideIndex);
+  }, 3000);
+
+  // Header Hide on Scroll (version améliorée)
+  const header = document.querySelector("header");
+  let lastScrollY = window.scrollY;
+  let lastShowScrollY = window.scrollY;
+  let ticking = false;
+  const scrollHideThreshold = 20;     // Disparition après 20px
+  const scrollShowThreshold = 150;    // Réapparition après avoir remonté de 150px
+
+  function updateHeaderVisibility() {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY && currentScrollY > scrollHideThreshold) {
+      // Scroll down
+      header.style.top = "-100px";
+      lastShowScrollY = currentScrollY;
+    } else if (
+      currentScrollY < lastScrollY &&
+      lastShowScrollY - currentScrollY > scrollShowThreshold
+    ) {
+      // Scroll up significantly
+      header.style.top = "0";
+    }
+
+    lastScrollY = currentScrollY;
+    ticking = false;
+  }
+
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateHeaderVisibility);
+      ticking = true;
+    }
+  });
+</script>
+
+
+
+</body>
+</html>
