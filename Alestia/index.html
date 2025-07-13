@@ -6,9 +6,45 @@
   <title>Alestia - Serveur Skyblock Tropical</title>
   <link rel="stylesheet" href="style.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
-
 </head>
 <body>
+
+  <!-- Modale Connexion -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeLoginModal()">&times;</span>
+      <h2>Connexion</h2>
+      <form id="loginForm">
+        <input type="text" name="username" placeholder="Pseudo Minecraft" required>
+        <input type="password" name="password" placeholder="Mot de passe" required>
+        <button type="submit">Se connecter</button>
+      </form>
+      <p id="loginMessage" class="login-message"></p>
+      <p class="create-account-link" style="margin-top: 10px; text-align: center;">
+        Pas encore de compte ? <a href="#" onclick="openRegisterModal()">Créer un compte</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Modale Inscription -->
+  <div id="registerModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeRegisterModal()">&times;</span>
+      <h2>Créer un compte</h2>
+      <form id="registerForm">
+        <input type="text" name="username" placeholder="Pseudo Minecraft" required>
+        <input type="email" name="email" placeholder="Adresse e-mail" required>
+        <input type="password" name="password" placeholder="Mot de passe" required>
+        <input type="password" name="confirmPassword" placeholder="Confirmez le mot de passe" required>
+        <button type="submit">S'inscrire</button>
+      </form>
+      <p id="registerMessage" class="login-message"></p>
+    </div>
+  </div>
+
+  
+
+  <!-- HEADER -->
   <header>
     <div class="logo-placeholder">
       <img src="/logo.png" alt="Logo Alestia" class="logo">
@@ -18,139 +54,285 @@
       <a href="#">Vote</a>
       <a href="#">Boutique</a>
       <a href="/discord.html" style="color:#00e0ff;">Discord</a>
-
+      <a href="#" onclick="openLoginModal()">Connexion</a>
+      <button id="burger" aria-label="Menu">&#9776;</button>
+      <div class="menu-overlay" id="menuOverlay"></div>
     </nav>
+
+    <div id="ipModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Adresse IP du Serveur</h2>
+    <input type="text" id="serverIp" value="play.alestia-sky.fr" readonly>
+    <button id="copyIpBtn">Copier l'adresse IP</button>
+    <p class="login-message">Rejoins-nous sur Minecraft !</p>
+  </div>
+</div>
+
   </header>
 
- <section class="hero">
-  <div class="hero-content">
-    <svg width="300" height="100" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Alestia" style="background: transparent;">
-  <defs>
-    <linearGradient id="diamondGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00cfff" />
-      <stop offset="50%" stop-color="#0088cc" />
-      <stop offset="100%" stop-color="#00cfff" />
-    </linearGradient>
-
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB">
-      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#00bfff" flood-opacity="1" />
-    </filter>
-
-    <linearGradient id="shineGradient" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="rgba(255,255,255,0)" />
-      <stop offset="50%" stop-color="rgba(255,255,255,0.6)" />
-      <stop offset="100%" stop-color="rgba(255,255,255,0)" />
-    </linearGradient>
-
-    <mask id="shineMask">
-      <rect x="0" y="0" width="300" height="100" fill="url(#shineGradient)">
-        <animate attributeName="x" from="-300" to="300" dur="3s" repeatCount="indefinite" />
-      </rect>
-    </mask>
-  </defs>
-
-  <text x="50%" y="70%" text-anchor="middle" font-family="Quicksand, Arial, sans-serif" font-weight="700" font-size="64" fill="url(#diamondGradient)" filter="url(#glow)">
-    Alestia
-  </text>
-
-  <text x="50%" y="70%" text-anchor="middle" font-family="Quicksand, Arial, sans-serif" font-weight="700" font-size="64" fill="white" mask="url(#shineMask)" pointer-events="none" style="mix-blend-mode: screen;">
-    Alestia
-  </text>
-</svg>
-
-    <p>Une aventure Skyblock tropicale vous attend !</p>
-    <button class="btn-play">Jouer</button>
-  </div>
-</section>
-
-
-
-
-<section class="slider">
-  <div class="slider-wrapper" id="sliderWrapper">
-    <div class="slide-track">
-    <img src="/image.png" class="slide active" alt="Slide 1">
-    <img src="/image1.png" class="slide" alt="Slide 2">
-    <img src="/image2.png" class="slide" alt="Slide 3">
-    <img src="/image3.png" class="slide" alt="Slide 4">
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <svg width="300" height="100" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Alestia" style="background: transparent;">
+        <defs>
+          <linearGradient id="diamondGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#00cfff" />
+            <stop offset="50%" stop-color="#0088cc" />
+            <stop offset="100%" stop-color="#00cfff" />
+          </linearGradient>
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB">
+            <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#00bfff" flood-opacity="1" />
+          </filter>
+          <linearGradient id="shineGradient" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="rgba(255,255,255,0)" />
+            <stop offset="50%" stop-color="rgba(255,255,255,0.6)" />
+            <stop offset="100%" stop-color="rgba(255,255,255,0)" />
+          </linearGradient>
+          <mask id="shineMask">
+            <rect x="0" y="0" width="300" height="100" fill="url(#shineGradient)">
+              <animate attributeName="x" from="-300" to="300" dur="3s" repeatCount="indefinite" />
+            </rect>
+          </mask>
+        </defs>
+        <text x="50%" y="70%" text-anchor="middle" font-family="Quicksand, Arial, sans-serif" font-weight="700" font-size="64" fill="url(#diamondGradient)" filter="url(#glow)">Alestia</text>
+        <text x="50%" y="70%" text-anchor="middle" font-family="Quicksand, Arial, sans-serif" font-weight="700" font-size="64" fill="white" mask="url(#shineMask)" pointer-events="none" style="mix-blend-mode: screen;">Alestia</text>
+      </svg>
+      <p>Une aventure Skyblock tropicale vous attend !</p>
+      <button id="btn-play" class="btn-play">Jouer</button>
+      <p id="player-count" class="player-count">Connexion au serveur...</p>
     </div>
-  </div>
-  <div class="slider-dots" id="sliderDots">
-    <span class="dot active" onclick="goToSlide(0)"></span>
-    <span class="dot" onclick="goToSlide(1)"></span>
-    <span class="dot" onclick="goToSlide(2)"></span>
-    <span class="dot" onclick="goToSlide(3)"></span>
-  </div>
-</section>
+  </section>
 
+  <!-- SLIDER -->
+  <section class="slider">
+    <div class="slider-wrapper" id="sliderWrapper">
+      <div class="slide-track">
+        <img src="/image.png" class="slide active" alt="Slide 1">
+        <img src="/image1.png" class="slide" alt="Slide 2">
+        <img src="/image2.png" class="slide" alt="Slide 3">
+        <img src="/image3.png" class="slide" alt="Slide 4">
+      </div>
+    </div>
+    <div class="slider-dots" id="sliderDots">
+      <span class="dot active" onclick="goToSlide(0)"></span>
+      <span class="dot" onclick="goToSlide(1)"></span>
+      <span class="dot" onclick="goToSlide(2)"></span>
+      <span class="dot" onclick="goToSlide(3)"></span>
+    </div>
+  </section>
+
+  <!-- PATCH NOTES -->
+  <section class="patch-notes">
+    <h3>Mises à jour & Patch Notes</h3>
+    <ul>
+      <li><strong>v1.2.0</strong> - 13 juillet 2025  
+        <p>Ajout de nouvelles fonctionnalités, correction de bugs, amélioration des performances.</p>
+      </li>
+      <li><strong>v1.1.0</strong> - 12 juillet 2025  
+        <p>Refonte de l’interface utilisateur et ajout du mode sombre.</p>
+      </li>
+      <li><strong>v1.0.0</strong> - 11 juillet 2025  
+        <p>Lancement initial du site.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ACTIONS -->
   <section class="actions">
     <a href="#" class="btn vote">Vote</a>
     <a href="#" class="btn shop">Boutique</a>
     <a href="#" class="btn discord">Discord</a>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <p>&copy; 2025 Alestia - Tous droits réservés</p>
   </footer>
 
- <script>
-  // Slider
-  let slideIndex = 0;
-  const slideTrack = document.querySelector('.slide-track');
-  const dots = document.querySelectorAll('.dot');
+  <!-- SCRIPT -->
+  <script>
+    // Slider
+    let slideIndex = 0;
+    const slideTrack = document.querySelector('.slide-track');
+    const dots = document.querySelectorAll('.dot');
 
-  function updateSlider(index) {
-    slideTrack.style.transform = `translateX(-${index * 25}%)`;
-    dots.forEach(dot => dot.classList.remove('active'));
-    dots[index].classList.add('active');
-  }
-
-  function goToSlide(index) {
-    slideIndex = index;
-    updateSlider(slideIndex);
-  }
-
-  setInterval(() => {
-    slideIndex = (slideIndex + 1) % 4;
-    updateSlider(slideIndex);
-  }, 3000);
-
-  // Header Hide on Scroll (version améliorée)
-  const header = document.querySelector("header");
-  let lastScrollY = window.scrollY;
-  let lastShowScrollY = window.scrollY;
-  let ticking = false;
-  const scrollHideThreshold = 20;     // Disparition après 20px
-  const scrollShowThreshold = 150;    // Réapparition après avoir remonté de 150px
-
-  function updateHeaderVisibility() {
-    const currentScrollY = window.scrollY;
-
-    if (currentScrollY > lastScrollY && currentScrollY > scrollHideThreshold) {
-      // Scroll down
-      header.style.top = "-100px";
-      lastShowScrollY = currentScrollY;
-    } else if (
-      currentScrollY < lastScrollY &&
-      lastShowScrollY - currentScrollY > scrollShowThreshold
-    ) {
-      // Scroll up significantly
-      header.style.top = "0";
+    function updateSlider(index) {
+      slideTrack.style.transform = `translateX(-${index * 25}%)`;
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[index].classList.add('active');
     }
 
-    lastScrollY = currentScrollY;
-    ticking = false;
-  }
-
-  window.addEventListener("scroll", () => {
-    if (!ticking) {
-      window.requestAnimationFrame(updateHeaderVisibility);
-      ticking = true;
+    function goToSlide(index) {
+      slideIndex = index;
+      updateSlider(slideIndex);
     }
-  });
+
+    setInterval(() => {
+      slideIndex = (slideIndex + 1) % 4;
+      updateSlider(slideIndex);
+    }, 3000);
+
+    // Header hide/show
+    const header = document.querySelector("header");
+    let lastScrollY = window.scrollY;
+    let lastShowScrollY = window.scrollY;
+    let ticking = false;
+    const scrollHideThreshold = 20;
+    const scrollShowThreshold = 150;
+
+    function updateHeaderVisibility() {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > scrollHideThreshold) {
+        header.style.top = "-100px";
+        lastShowScrollY = currentScrollY;
+      } else if (currentScrollY < lastScrollY && lastShowScrollY - currentScrollY > scrollShowThreshold) {
+        header.style.top = "0";
+      }
+      lastScrollY = currentScrollY;
+      ticking = false;
+    }
+
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateHeaderVisibility);
+        ticking = true;
+      }
+    });
+
+    // Connexion joueur
+    async function fetchPlayerCount() {
+      const ip = 'play.alestia-sky.fr';
+      const url = `https://api.mcstatus.io/v2/status/java/${ip}`;
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const onlinePlayers = data.players.online;
+        const maxPlayers = data.players.max;
+        document.getElementById('player-count').innerText = `${onlinePlayers} joueur${onlinePlayers > 1 ? 's' : ''} en ligne`;
+      } catch (error) {
+        document.getElementById('player-count').innerText = 'Impossible de récupérer le nombre de joueurs.';
+      }
+    }
+
+    fetchPlayerCount();
+
+    // Modales
+    function openLoginModal() {
+      document.getElementById("loginModal").style.display = "flex";
+    }
+
+    function closeLoginModal() {
+      document.getElementById("loginModal").style.display = "none";
+    }
+
+    function openRegisterModal() {
+      document.getElementById("registerModal").style.display = "flex";
+      closeLoginModal();
+    }
+
+    function closeRegisterModal() {
+      document.getElementById("registerModal").style.display = "none";
+    }
+
+    // Fermer modales clic extérieur
+    window.addEventListener("click", function(event) {
+      if (event.target === document.getElementById("loginModal")) closeLoginModal();
+      if (event.target === document.getElementById("registerModal")) closeRegisterModal();
+    });
+
+    // Formulaire Connexion
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const username = this.username.value;
+      const password = this.password.value;
+      if (username === "admin" && password === "1234") {
+        document.getElementById("loginMessage").textContent = "Connexion réussie !";
+        setTimeout(() => {
+          closeLoginModal();
+          alert("Bienvenue " + username + " !");
+        }, 1000);
+      } else {
+        document.getElementById("loginMessage").textContent = "Identifiants incorrects.";
+      }
+    });
+
+    // Formulaire Inscription
+    document.getElementById("registerForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const username = this.username.value;
+      const email = this.email.value;
+      const password = this.password.value;
+      const confirmPassword = this.confirmPassword.value;
+
+      if (password !== confirmPassword) {
+        document.getElementById("registerMessage").textContent = "Les mots de passe ne correspondent pas.";
+        return;
+      }
+
+      document.getElementById("registerMessage").textContent = "Compte créé avec succès !";
+      setTimeout(() => {
+        closeRegisterModal();
+        alert("Bienvenue sur Alestia, " + username + " !");
+      }, 1000);
+    });
+
+    // Burger menu
+    const burger = document.getElementById('burger');
+    const nav = document.querySelector('nav');
+    const overlay = document.getElementById('menuOverlay');
+
+    burger.addEventListener('click', () => {
+      const opened = nav.classList.toggle('active');
+      overlay.classList.toggle('active', opened);
+    });
+
+    overlay.addEventListener('click', () => {
+      nav.classList.remove('active');
+      overlay.classList.remove('active');
+    });
+
+
+
+const playBtn = document.getElementById('btn-play');
+const ipModal = document.getElementById('ipModal');
+const closeIpModalBtn = document.querySelector('#ipModal .close');
+const copyIpBtn = document.getElementById('copyIpBtn');
+const serverIp = document.getElementById('serverIp');
+
+// Ouvrir modale IP
+playBtn.addEventListener('click', () => {
+  ipModal.style.display = 'flex';
+});
+
+// Fermer modale IP avec bouton close
+closeIpModalBtn.addEventListener('click', () => {
+  ipModal.style.display = 'none';
+});
+
+// Fermer modale IP clic en dehors
+window.addEventListener('click', (e) => {
+  if (e.target === ipModal) {
+    ipModal.style.display = 'none';
+  }
+});
+
+// Copier IP
+copyIpBtn.addEventListener('click', () => {
+  navigator.clipboard.writeText(serverIp.value)
+    .then(() => {
+      copyIpBtn.textContent = 'Copié !';
+      setTimeout(() => {
+        copyIpBtn.textContent = "Copier l'adresse IP";
+      }, 2000);
+    })
+    .catch((err) => {
+      console.error('Erreur lors de la copie :', err);
+    });
+});
+
 </script>
 
-
-
+  </script>
 </body>
 </html>
